@@ -1,0 +1,27 @@
+# BatchGetItem
+
+var params = {
+    RequestItems: { // map of TableName to list of Key to get from each table
+        Movies: {
+            Keys: [ // a list of primary key value maps
+                {
+                    year: 1962,
+                    title: 'Cape Fear'
+                },
+                {
+                    year: 1988,
+                    title: 'The Blob'
+                }
+            ],
+            AttributesToGet: [ // option (attributes to retrieve from this table)
+                'year', 'title', 'info'
+            ],
+            ConsistentRead: false,
+        },
+    },
+    ReturnConsumedCapacity: 'NONE',
+};
+docClient.batchGet(params, function(err, data) {
+    if (err) ppJson(err); // an error occurred
+    else ppJson(data); // successful response
+});

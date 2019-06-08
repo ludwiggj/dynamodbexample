@@ -1,0 +1,19 @@
+# GetItem
+
+var params = {
+    TableName: 'Movies',
+    Key: {
+        year: 1962,
+        title: 'Cape Fear'
+    },
+    AttributesToGet: [
+        'year', 'title', 'info'
+    ],
+    ConsistentRead: false,
+    ReturnConsumedCapacity: 'NONE',
+};
+
+docClient.get(params, function(err, data) {
+    if (err) ppJson(err); // an error occurred
+    else ppJson(data); // successful response
+});

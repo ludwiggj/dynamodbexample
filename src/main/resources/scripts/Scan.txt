@@ -1,0 +1,97 @@
+Scan:
+
+1) This works (all results):
+
+var params = {
+    TableName: 'Movies',
+    Limit: 50,
+    ExpressionAttributeNames: {
+        '#yr': 'year'
+    },
+    ProjectionExpression: '#yr, title',
+};
+dynamodb.scan(params, function(err, data) {
+    if (err) ppJson(err); // an error occurred
+    else ppJson(data); // successful response
+});
+
+2) This should work, but doesn't (filter on title):
+
+var params = {
+    TableName: 'Movies',
+    Limit: 50,
+    FilterExpression: 'contains(title, :t)',
+    ExpressionAttributeNames: {
+        '#yr': 'year'
+    },
+    ExpressionAttributeValues: {
+      ':t': 'The'
+    },
+    ProjectionExpression: '#yr, title',
+};
+dynamodb.scan(params, function(err, data) {
+    if (err) ppJson(err); // an error occurred
+    else ppJson(data); // successful response
+});
+
+Error:
+
+Expected params.ExpressionAttributeValues['t'] to be a structure"
+
+See https://stackoverflow.com/questions/38347801/dynamodb-scan-with-condition
+
+3) This does work, as per above article:
+
+var params = {
+    TableName: 'Movies',
+    Limit: 50,
+    FilterExpression: 'contains(title, :t)',
+    ExpressionAttributeNames: {
+        '#yr': 'year'
+    },
+    ExpressionAttributeValues: {
+      ':t': {
+        'S': 'The'
+      }
+    },
+    ProjectionExpression: '#yr, title',
+};
+dynamodb.scan(params, function(err, data) {
+    if (err) ppJson(err); // an error occurred
+    else ppJson(data); // successful response
+});
+
+=> 
+"Items" [ 
+0: { 
+"title" { 
+"S":"The Grapes of Wrath"
+"year" { 
+"N":"1940"
+1: { 
+"title" { 
+"S":"The Great Dictator"
+"year" { 
+"N":"1940"
+2: { 
+"title" { 
+"S":"Anacondas: The Hunt for the Blood Orchid"
+"year" { 
+"N":"2004"
+3: { 
+"title" { 
+"S":"Anchorman: The Legend of Ron Burgundy"
+"year" { 
+"N":"2004"
+4: { 
+"title" { 
+"S":"Bridget Jones: The Edge of Reason"
+"year" { 
+"N":"2004"
+"Count":5
+"ScannedCount":50
+"LastEvaluatedKey" { 
+"title" { 
+"S":"Gegen die Wand"
+"year" { 
+"N":"2004"
