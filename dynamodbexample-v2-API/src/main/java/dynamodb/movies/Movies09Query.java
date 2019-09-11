@@ -1,4 +1,4 @@
-package com.example.dynamodb.movies;
+package dynamodb.movies;
 
 import software.amazon.awssdk.services.dynamodb.model.AttributeValue;
 import software.amazon.awssdk.services.dynamodb.model.DynamoDbException;
@@ -8,7 +8,7 @@ import software.amazon.awssdk.services.dynamodb.model.QueryResponse;
 import java.util.HashMap;
 import java.util.Map;
 
-import static com.example.dynamodb.movies.DynamoDbUtils.*;
+import static dynamodb.movies.DynamoDbUtils.*;
 
 public class Movies09Query {
     public static void main(String[] args) {

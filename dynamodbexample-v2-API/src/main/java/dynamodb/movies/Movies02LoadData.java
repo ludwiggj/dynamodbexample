@@ -1,4 +1,4 @@
-package com.example.dynamodb.movies;
+package dynamodb.movies;
 
 import com.fasterxml.jackson.core.JsonFactory;
 import com.fasterxml.jackson.core.JsonParser;
@@ -10,13 +10,14 @@ import software.amazon.awssdk.services.dynamodb.model.PutItemRequest;
 import java.io.File;
 import java.util.Iterator;
 
-import static com.example.dynamodb.movies.DynamoDbUtils.*;
+import static dynamodb.movies.DynamoDbUtils.*;
 
 public class Movies02LoadData {
 
     public static void main(String[] args) throws Exception {
         ClassLoader classLoader = Movies02LoadData.class.getClassLoader();
-        File file = new File(classLoader.getResource("moviedataSample.json").getFile());
+//        File file = new File(classLoader.getResource("moviedataSample.json").getFile());
+        File file = new File(classLoader.getResource("moviedata.json").getFile());
         JsonParser parser = new JsonFactory().createParser(file);
         JsonNode rootNode = new ObjectMapper().readTree(parser);
         Iterator<JsonNode> iterator = rootNode.iterator();

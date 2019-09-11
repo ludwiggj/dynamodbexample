@@ -1,4 +1,4 @@
-package com.example.dynamodb.generic;
+package dynamodb.generic;
 
 /*
 Copyright 2010-2019 Amazon.com, Inc. or its affiliates. All Rights Reserved.

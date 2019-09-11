@@ -1,11 +1,11 @@
-package com.example.dynamodb.movies;
+package dynamodb.movies;
 
 import software.amazon.awssdk.services.dynamodb.model.ConditionalCheckFailedException;
 import software.amazon.awssdk.services.dynamodb.model.PutItemRequest;
 import java.util.HashMap;
 import java.util.Map;
 
-import static com.example.dynamodb.movies.DynamoDbUtils.*;
+import static dynamodb.movies.DynamoDbUtils.*;
 
 public class Movies05ConditionalCreateItem {
     public static void main(String[] args) {

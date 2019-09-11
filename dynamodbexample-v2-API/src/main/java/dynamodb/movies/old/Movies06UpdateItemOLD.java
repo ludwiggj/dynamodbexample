@@ -1,6 +1,6 @@
-package com.example.dynamodb.movies.old;
+package dynamodb.movies.old;
 
-import com.example.dynamodb.movies.DynamoDbUtils;
+import dynamodb.movies.DynamoDbUtils;
 import software.amazon.awssdk.services.dynamodb.model.AttributeAction;
 import software.amazon.awssdk.services.dynamodb.model.AttributeValue;
 import software.amazon.awssdk.services.dynamodb.model.AttributeValueUpdate;

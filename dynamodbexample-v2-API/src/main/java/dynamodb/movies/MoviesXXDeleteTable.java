@@ -1,4 +1,4 @@
-package com.example.dynamodb.movies;
+package dynamodb.movies;
 
 /*
  * Copyright 2010-2019 Amazon.com, Inc. or its affiliates. All Rights Reserved.
@@ -17,7 +17,7 @@ package com.example.dynamodb.movies;
 import software.amazon.awssdk.services.dynamodb.model.DeleteTableRequest;
 import software.amazon.awssdk.services.dynamodb.model.DeleteTableResponse;
 
-import static com.example.dynamodb.movies.DynamoDbUtils.MOVIES_TABLE;
+import static dynamodb.movies.DynamoDbUtils.MOVIES_TABLE;
 
 public class MoviesXXDeleteTable {
 

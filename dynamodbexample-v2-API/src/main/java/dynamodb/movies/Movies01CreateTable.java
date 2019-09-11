@@ -1,7 +1,7 @@
-package com.example.dynamodb.movies;
+package dynamodb.movies;
 
 import software.amazon.awssdk.services.dynamodb.model.*;
-import static com.example.dynamodb.movies.DynamoDbUtils.*;
+import static dynamodb.movies.DynamoDbUtils.*;
 
 public class Movies01CreateTable {
 

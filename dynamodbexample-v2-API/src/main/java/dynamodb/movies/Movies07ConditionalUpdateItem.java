@@ -1,33 +1,31 @@
-package com.example.dynamodb.movies;
+package dynamodb.movies;
 
 import software.amazon.awssdk.services.dynamodb.model.AttributeValue;
 import software.amazon.awssdk.services.dynamodb.model.UpdateItemRequest;
 import java.util.HashMap;
 import java.util.Map;
 
-import static com.example.dynamodb.movies.DynamoDbUtils.*;
-
 public class Movies07ConditionalUpdateItem {
 
     public static void main(String[] args) {
-        conditionalUpdate(BIGIEST_MOVIE_TITLE, BIGIEST_MOVIE_YEAR);
+        conditionalUpdate(DynamoDbUtils.BIGIEST_MOVIE_TITLE, DynamoDbUtils.BIGIEST_MOVIE_YEAR);
         conditionalUpdate("Prisoners", "2013");
     }
 
     private static void conditionalUpdate(String title, String year) {
         System.out.println("Before conditional update\n");
-        displayItem(title, year);
+        DynamoDbUtils.displayItem(title, year);
 
         UpdateItemRequest updateItemRequest = createUpdateItemRequest(title, year);
 
         try {
-            ddb.updateItem(updateItemRequest);
+            DynamoDbUtils.ddb.updateItem(updateItemRequest);
         } catch (Exception e) {
             System.out.println(e.getMessage());
         }
 
         System.out.println("After update\n");
-        displayItem(title, year);
+        DynamoDbUtils.displayItem(title, year);
     }
 
     private static UpdateItemRequest createUpdateItemRequest(String title, String year) {
@@ -40,8 +38,8 @@ public class Movies07ConditionalUpdateItem {
         attributeNames.put("#yr", "year");
 
         return UpdateItemRequest.builder()
-                .tableName(MOVIES_TABLE)
-                .key(itemKey(title, year))
+                .tableName(DynamoDbUtils.MOVIES_TABLE)
+                .key(DynamoDbUtils.itemKey(title, year))
                 .updateExpression("ADD releasedAfter :latestYear")
                 .conditionExpression("#yr > :latestYear")
                 .expressionAttributeNames(attributeNames)

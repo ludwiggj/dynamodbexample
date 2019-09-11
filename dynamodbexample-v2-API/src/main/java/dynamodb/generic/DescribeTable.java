@@ -1,4 +1,4 @@
-package com.example.dynamodb.generic;
+package dynamodb.generic;
 
 import software.amazon.awssdk.services.dynamodb.model.DynamoDbException;
 import software.amazon.awssdk.services.dynamodb.DynamoDbClient;

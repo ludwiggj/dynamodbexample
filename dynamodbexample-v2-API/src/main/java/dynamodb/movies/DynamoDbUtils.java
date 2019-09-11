@@ -1,4 +1,4 @@
-package com.example.dynamodb.movies;
+package dynamodb.movies;
 
 import software.amazon.awssdk.services.dynamodb.DynamoDbClient;
 import software.amazon.awssdk.services.dynamodb.model.AttributeValue;

@@ -1,7 +1,7 @@
-package com.example.dynamodb.movies;
+package dynamodb.movies;
 
 import software.amazon.awssdk.services.dynamodb.model.PutItemRequest;
-import static com.example.dynamodb.movies.DynamoDbUtils.*;
+import static dynamodb.movies.DynamoDbUtils.*;
 
 class Movies04CreateItem {
 
