@@ -6,6 +6,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 import static dynamodb.movies.DynamoDbUtils.*;
+import static common.Utils.*;
 
 public class Movies05ConditionalCreateItem {
     public static void main(String[] args) {

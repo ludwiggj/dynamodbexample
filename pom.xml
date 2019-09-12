@@ -11,6 +11,7 @@
     <modules>
         <module>dynamodbexample-v2-API</module>
         <module>common-resources</module>
+        <module>dynamodbexample-v1-API</module>
     </modules>
 
     <name>dynamodbexample</name>

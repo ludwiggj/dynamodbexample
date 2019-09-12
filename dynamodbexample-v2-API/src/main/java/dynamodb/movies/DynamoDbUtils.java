@@ -12,16 +12,9 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Set;
 
+import static common.Utils.*;
+
 public class DynamoDbUtils {
-    static final String MOVIES_TABLE = "Movies";
-    static final String YEAR = "year";
-    static final String TITLE = "title";
-    static final String INFO = "info";
-
-    static final String BIGIEST_MOVIE_TITLE = "The Newliest Bigiest Big New Movie";
-    static final String BIGIEST_MOVIE_YEAR = "2018";
-
-
     public static DynamoDbClient ddb;
 
     static {

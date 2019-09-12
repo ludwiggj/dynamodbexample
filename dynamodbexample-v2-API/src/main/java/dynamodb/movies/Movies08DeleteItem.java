@@ -1,24 +1,26 @@
 package dynamodb.movies;
 
 import software.amazon.awssdk.services.dynamodb.model.*;
+import static common.Utils.*;
+import static dynamodb.movies.DynamoDbUtils.*;
 
 public class Movies08DeleteItem {
     public static void main(String[] args) {
-        String title = DynamoDbUtils.BIGIEST_MOVIE_TITLE;
-        String year = DynamoDbUtils.BIGIEST_MOVIE_YEAR;
+        String title = BIGIEST_MOVIE_TITLE;
+        String year = BIGIEST_MOVIE_YEAR;
 
         System.out.println("Before:");
-        DynamoDbUtils.displayItem(title, year);
+        displayItem(title, year);
 
-        System.out.format("Deleting item \"%s (%s)\" from %s\n", title, year, DynamoDbUtils.MOVIES_TABLE);
+        System.out.format("Deleting item \"%s (%s)\" from %s\n", title, year, MOVIES_TABLE);
 
         DeleteItemRequest deleteReq = DeleteItemRequest.builder()
-                .tableName(DynamoDbUtils.MOVIES_TABLE)
-                .key(DynamoDbUtils.itemKey(title, year))
+                .tableName(MOVIES_TABLE)
+                .key(itemKey(title, year))
                 .build();
 
         try {
-            DeleteItemResponse response = DynamoDbUtils.ddb.deleteItem(deleteReq);
+            DeleteItemResponse response = ddb.deleteItem(deleteReq);
             System.out.format("Delete response code = %s\n", response.sdkHttpResponse().statusCode());
         } catch (DynamoDbException e) {
             System.err.println(e.getMessage());
@@ -26,6 +28,6 @@ public class Movies08DeleteItem {
         }
 
         System.out.println("After:");
-        DynamoDbUtils.displayItem(title, year);
+        displayItem(title, year);
     }
 }

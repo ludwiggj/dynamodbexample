@@ -9,6 +9,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 import static dynamodb.movies.DynamoDbUtils.*;
+import static common.Utils.*;
 
 public class Movies06UpdateItem {
 
