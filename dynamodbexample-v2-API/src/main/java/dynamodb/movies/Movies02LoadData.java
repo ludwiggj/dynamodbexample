@@ -19,8 +19,8 @@ public class Movies02LoadData {
 
     public static void main(String[] args) throws Exception {
         ClassLoader classLoader = Movies02LoadData.class.getClassLoader();
-//        File file = new File(classLoader.getResource(MOVIE_DATA_SAMPLE_FILE).getFile());
-        File file = new File(classLoader.getResource(MOVIE_DATA_FILE).getFile());
+        File file = new File(classLoader.getResource(MOVIE_DATA_SAMPLE_FILE).getFile());
+//        File file = new File(classLoader.getResource(MOVIE_DATA_FILE).getFile());
         JsonParser parser = new JsonFactory().createParser(file);
         JsonNode rootNode = new ObjectMapper().readTree(parser);
         Iterator<JsonNode> iterator = rootNode.iterator();
@@ -50,7 +50,7 @@ public class Movies02LoadData {
 
             PutItemRequest request = createPutItemRequest(
                     currentNode.path(TITLE).asText(),
-                    currentNode.path(YEAR).asText(),
+                    currentNode.path(YEAR).asInt(),
                     currentNode.path(INFO).toString()
             );
             ddb.putItem(request);

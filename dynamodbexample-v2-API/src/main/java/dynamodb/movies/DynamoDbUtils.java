@@ -25,14 +25,14 @@ public class DynamoDbUtils {
         }
     }
 
-    static Map<String, AttributeValue> itemKey(String title, String year) {
+    static Map<String, AttributeValue> itemKey(String title, int year) {
         Map<String, AttributeValue> getAttributes = new HashMap<>();
-        getAttributes.put("year", AttributeValue.builder().n(year).build());
+        getAttributes.put("year", AttributeValue.builder().n(Integer.toString(year)).build());
         getAttributes.put("title", AttributeValue.builder().s(title).build());
         return getAttributes;
     }
 
-    private static GetItemResponse getItem(String title, String year) {
+    private static GetItemResponse getItem(String title, int year) {
         GetItemRequest getRequest = GetItemRequest.builder()
                 .tableName(MOVIES_TABLE)
                 .key(itemKey(title, year))
@@ -41,7 +41,7 @@ public class DynamoDbUtils {
         return ddb.getItem(getRequest);
     }
 
-    public static void displayItem(String title, String year) {
+    public static void displayItem(String title, int year) {
         System.out.format("\nDisplaying item \"%s (%s)\"\n", title, year);
 
         Map<String, AttributeValue> returned_item = getItem(title, year).item();
@@ -60,16 +60,16 @@ public class DynamoDbUtils {
         }
     }
 
-    static PutItemRequest createPutItemRequest(String title, String year, String info) {
+    static PutItemRequest createPutItemRequest(String title, int year, String info) {
         return createPutItemRequestBuilder(title, year, info).build();
     }
 
-    static PutItemRequest.Builder createPutItemRequestBuilder(String title, String year, String info) {
+    static PutItemRequest.Builder createPutItemRequestBuilder(String title, int year, String info) {
         System.out.format("Adding movie: %s (%s)\n", title, year);
 
         HashMap<String, AttributeValue> item_values = new HashMap<>();
 
-        item_values.put(YEAR, AttributeValue.builder().n(year).build());
+        item_values.put(YEAR, AttributeValue.builder().n(Integer.toString(year)).build());
         item_values.put(TITLE, AttributeValue.builder().s(title).build());
         item_values.put(INFO, AttributeValue.builder().s(info).build());
 

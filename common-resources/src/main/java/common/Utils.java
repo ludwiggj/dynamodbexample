@@ -15,7 +15,7 @@ public class Utils {
     public static final String INFO = "info";
 
     public static final String BIGIEST_MOVIE_TITLE = "The Newliest Bigiest Big New Movie";
-    public static final String BIGIEST_MOVIE_YEAR = "2018";
+    public static final int BIGIEST_MOVIE_YEAR = 2018;
 
     public static JsonParser parseJsonFile(String fileName) throws IOException {
         ClassLoader classLoader = Utils.class.getClassLoader();

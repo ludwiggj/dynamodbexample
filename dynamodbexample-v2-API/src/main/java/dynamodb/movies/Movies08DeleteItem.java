@@ -7,7 +7,7 @@ import static dynamodb.movies.DynamoDbUtils.*;
 public class Movies08DeleteItem {
     public static void main(String[] args) {
         String title = BIGIEST_MOVIE_TITLE;
-        String year = BIGIEST_MOVIE_YEAR;
+        int year = BIGIEST_MOVIE_YEAR;
 
         System.out.println("Before:");
         displayItem(title, year);

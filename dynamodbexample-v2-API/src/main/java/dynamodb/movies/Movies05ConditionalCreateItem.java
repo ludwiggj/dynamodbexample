@@ -32,7 +32,7 @@ public class Movies05ConditionalCreateItem {
     // Status Code: 400, Request ID: 0b9a5908-7ab6-4215-bd05-229711ba0d1a)
     //
     // See: https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/ReservedWords.html
-    private static PutItemRequest createPutItemRequest(String title, String year, String info) {
+    private static PutItemRequest createPutItemRequest(String title, int year, String info) {
         Map<String, String> attributeNames = new HashMap<>();
         attributeNames.put("#yr", "year");
 

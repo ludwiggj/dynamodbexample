@@ -1,0 +1,25 @@
+{
+  year=AttributeValue(N=1985),
+  title=AttributeValue(S=A Nightmare on Elm Street Part 2: Freddy's Revenge),
+  info=AttributeValue(M= {
+      actors=AttributeValue(L=[
+        AttributeValue(S=Robert Englund),
+        AttributeValue(S=Mark Patton),
+        AttributeValue(S=Kim Myers)
+      ]),
+      release_date=AttributeValue(S=1985-10-01T00:00:00Z),
+      plot=AttributeValue(S=A teenage boy is haunted in his dreams by Freddy Krueger who is out to possess him to
+                            continue his murdering in the real world.),
+      genres=AttributeValue(L=[
+        AttributeValue(S=Horror)
+      ]),
+      image_url=AttributeValue(S=http://ia.media-imdb.com/images/M/MV5BMjA4OTA4NTA4MV5BMl5BanBnXkFtZTYwNTI2MjU5._V1_SX400_.jpg),
+      directors=AttributeValue(L=[
+        AttributeValue(S=Jack Sholder)
+      ]),
+      rating=AttributeValue(N=5.1),
+      rank=AttributeValue(N=4008),
+      running_time_secs=AttributeValue(N=5220)
+    }
+  )
+}

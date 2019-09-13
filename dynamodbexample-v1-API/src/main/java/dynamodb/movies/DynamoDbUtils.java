@@ -6,6 +6,7 @@ import com.amazonaws.services.dynamodbv2.AmazonDynamoDBClientBuilder;
 import com.amazonaws.services.dynamodbv2.document.DynamoDB;
 import com.amazonaws.services.dynamodbv2.document.Item;
 import com.amazonaws.services.dynamodbv2.document.Table;
+import com.amazonaws.services.dynamodbv2.document.spec.GetItemSpec;
 
 import static common.Utils.*;
 
@@ -38,32 +39,28 @@ public class DynamoDbUtils {
 //        return ddb.getItem(getRequest);
 //    }
 //
-//    public static void displayItem(String title, String year) {
-//        System.out.format("\nDisplaying item \"%s (%s)\"\n", title, year);
-//
-//        Map<String, AttributeValue> returned_item = getItem(title, year).item();
-//        if (returned_item != null) {
-//            Set<String> keys = returned_item.keySet();
-//            // See https://github.com/aws/aws-sdk-java-v2/issues/865
-//            if (keys.isEmpty()) {
-//                System.out.format("No item found\n");
-//            } else {
-//                for (String key : keys) {
-//                    System.out.format("Attr -> %s: %s\n", key, returned_item.get(key).toString());
-//                }
-//            }
-//        } else {
-//            System.out.format("No item found\n");
-//        }
-//    }
-//
+    static void displayItem(String title, int year) {
+        System.out.format("\nDisplaying item \"%s (%s)\"\n", title, year);
+
+        Table table = ddb.getTable(MOVIES_TABLE);
+
+        GetItemSpec spec = new GetItemSpec().withPrimaryKey(YEAR, year, TITLE, title);
+
+        try {
+            Item outcome = table.getItem(spec);
+            System.out.println("GetItem succeeded: " + outcome);
+        } catch (Exception e) {
+            System.out.format("No item found\n");
+            System.err.println(e.getMessage());
+        }
+    }
+
     static void insertItem(String title, int year, String info) {
         Table table = ddb.getTable(MOVIES_TABLE);
         try {
-            table.putItem(
-                    new Item()
-                            .withPrimaryKey(YEAR, year, TITLE, title)
-                            .withJSON(INFO, info)
+            table.putItem(new Item()
+                    .withPrimaryKey(YEAR, year, TITLE, title)
+                    .withJSON(INFO, info)
             );
             System.out.format("Added movie: %s (%s)\n", title, year);
         } catch (Exception e) {

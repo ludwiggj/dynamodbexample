@@ -15,7 +15,7 @@ public class Movies06UpdateItem {
 
     public static void main(String[] args) {
         String title = BIGIEST_MOVIE_TITLE;
-        String year = BIGIEST_MOVIE_YEAR;
+        int year = BIGIEST_MOVIE_YEAR;
 
         System.out.println("Before update");
         displayItem(title, year);
@@ -28,7 +28,7 @@ public class Movies06UpdateItem {
         displayItem(title, year);
     }
 
-    private static UpdateItemRequest createUpdateItemRequest(String title, String year) {
+    private static UpdateItemRequest createUpdateItemRequest(String title, int year) {
         System.out.format("Updating movie: %s (%s)\n", title, year);
 
         Map<String, AttributeValueUpdate> updated_values = new HashMap<>();

@@ -10,17 +10,19 @@ import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
 
+import static dynamodb.movies.DynamoDbUtils.displayItem;
+
 public class Movies06UpdateItemOLD {
 
-    private static final String year = "2018";
-    private static final AttributeValue yearAttr = AttributeValue.builder().n(year).build();
+    private static final int year = 2018;
+    private static final AttributeValue yearAttr = AttributeValue.builder().n(Integer.toString(year)).build();
     private static final String title = "The Newliest Bigiest Big New Movie";
     private static final AttributeValue titleAttr = AttributeValue.builder().s(title).build();
 
     public static void main(String[] args) {
         System.out.println("Before update");
         System.out.println();
-        DynamoDbUtils.displayItem(title, year);
+        displayItem(title, year);
 
         UpdateItemRequest updateItemRequest = createUpdateItemRequest();
 
@@ -28,7 +30,7 @@ public class Movies06UpdateItemOLD {
 
         System.out.println("After update");
         System.out.println();
-        DynamoDbUtils.displayItem(title, year);
+        displayItem(title, year);
     }
 
     private static UpdateItemRequest createUpdateItemRequest() {

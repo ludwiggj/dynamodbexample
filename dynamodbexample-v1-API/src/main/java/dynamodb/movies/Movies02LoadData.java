@@ -13,8 +13,8 @@ import static common.Utils.*;
 public class Movies02LoadData {
 
     public static void main(String[] args) throws Exception {
-        JsonParser parser = Utils.parseJsonFile(MOVIE_DATA_FILE);
-//        JsonParser parser = Utils.parseJsonFile(MOVIE_DATA_SAMPLE_FILE);
+//        JsonParser parser = Utils.parseJsonFile(MOVIE_DATA_FILE);
+        JsonParser parser = Utils.parseJsonFile(MOVIE_DATA_SAMPLE_FILE);
         JsonNode rootNode = new ObjectMapper().readTree(parser);
         Iterator<JsonNode> iter = rootNode.iterator();
 

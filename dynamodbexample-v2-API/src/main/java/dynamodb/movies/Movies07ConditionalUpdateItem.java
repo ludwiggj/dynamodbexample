@@ -5,15 +5,16 @@ import software.amazon.awssdk.services.dynamodb.model.UpdateItemRequest;
 import java.util.HashMap;
 import java.util.Map;
 import static common.Utils.*;
+import static dynamodb.movies.DynamoDbUtils.itemKey;
 
 public class Movies07ConditionalUpdateItem {
 
     public static void main(String[] args) {
         conditionalUpdate(BIGIEST_MOVIE_TITLE, BIGIEST_MOVIE_YEAR);
-        conditionalUpdate("Prisoners", "2013");
+        conditionalUpdate("Prisoners", 2013);
     }
 
-    private static void conditionalUpdate(String title, String year) {
+    private static void conditionalUpdate(String title, int year) {
         System.out.println("Before conditional update\n");
         DynamoDbUtils.displayItem(title, year);
 
@@ -29,7 +30,7 @@ public class Movies07ConditionalUpdateItem {
         DynamoDbUtils.displayItem(title, year);
     }
 
-    private static UpdateItemRequest createUpdateItemRequest(String title, String year) {
+    private static UpdateItemRequest createUpdateItemRequest(String title, int year) {
         System.out.format("Updating movie: %s (%s)\n", title, year);
 
         HashMap<String, AttributeValue> expressionAttributeValues = new HashMap<>();
@@ -40,7 +41,7 @@ public class Movies07ConditionalUpdateItem {
 
         return UpdateItemRequest.builder()
                 .tableName(MOVIES_TABLE)
-                .key(DynamoDbUtils.itemKey(title, year))
+                .key(itemKey(title, year))
                 .updateExpression("ADD releasedAfter :latestYear")
                 .conditionExpression("#yr > :latestYear")
                 .expressionAttributeNames(attributeNames)
