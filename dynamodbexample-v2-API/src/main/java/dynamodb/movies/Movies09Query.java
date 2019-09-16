@@ -20,7 +20,7 @@ public class Movies09Query {
     private static void filmsReleasedIn1985() {
         String year = "1985";
 
-        System.out.format("Querying %s\n", MOVIES_TABLE);
+        System.out.format("Querying %s\n", MOVIES_TABLE_NAME);
 
         Map<String, String> attrNameAlias = new HashMap<>();
         attrNameAlias.put("#yr", YEAR);
@@ -29,7 +29,7 @@ public class Movies09Query {
         attrValues.put(":" + YEAR, AttributeValue.builder().n(year).build());
 
         QueryRequest queryReq = QueryRequest.builder()
-                .tableName(MOVIES_TABLE)
+                .tableName(MOVIES_TABLE_NAME)
                 .keyConditionExpression("#yr" + " = :" + YEAR)
                 .expressionAttributeNames(attrNameAlias)
                 .expressionAttributeValues(attrValues)
@@ -51,7 +51,7 @@ public class Movies09Query {
     private static void filesReleasedIn1992BeginningAtoL() {
         String year = "1992";
 
-        System.out.format("Querying %s\n", MOVIES_TABLE);
+        System.out.format("Querying %s\n", MOVIES_TABLE_NAME);
 
         Map<String, String> attrNameAlias = new HashMap<>();
         attrNameAlias.put("#yr", YEAR);
@@ -62,7 +62,7 @@ public class Movies09Query {
         attrValues.put(":letter2", AttributeValue.builder().s("L").build());
 
         QueryRequest queryReq = QueryRequest.builder()
-                .tableName(MOVIES_TABLE)
+                .tableName(MOVIES_TABLE_NAME)
                 // TODO - This doesn't work
                 //.projectionExpression("#yr, title, info.genres, info.actors")
                 .projectionExpression("#yr, title, info")

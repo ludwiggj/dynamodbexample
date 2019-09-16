@@ -31,7 +31,7 @@ public class Movies01CreateTable {
                         .readCapacityUnits(10L)
                         .writeCapacityUnits(10L)
                         .build())
-                .tableName(MOVIES_TABLE)
+                .tableName(MOVIES_TABLE_NAME)
                 .build();
 
         CreateTableResponse response = DynamoDbUtils.ddb.createTable(request);

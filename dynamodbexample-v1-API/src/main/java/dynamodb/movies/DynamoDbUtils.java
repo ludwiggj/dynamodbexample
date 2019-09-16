@@ -5,13 +5,17 @@ import com.amazonaws.services.dynamodbv2.AmazonDynamoDB;
 import com.amazonaws.services.dynamodbv2.AmazonDynamoDBClientBuilder;
 import com.amazonaws.services.dynamodbv2.document.DynamoDB;
 import com.amazonaws.services.dynamodbv2.document.Item;
+import com.amazonaws.services.dynamodbv2.document.PutItemOutcome;
 import com.amazonaws.services.dynamodbv2.document.Table;
 import com.amazonaws.services.dynamodbv2.document.spec.GetItemSpec;
+
+import java.util.Map;
 
 import static common.Utils.*;
 
 public class DynamoDbUtils {
-    static DynamoDB ddb;
+    static final Table MOVIES_TABLE;
+    static final DynamoDB ddb;
 
     static {
         AmazonDynamoDB client = AmazonDynamoDBClientBuilder
@@ -21,6 +25,8 @@ public class DynamoDbUtils {
                 ).build();
 
         ddb = new DynamoDB(client);
+
+        MOVIES_TABLE = ddb.getTable(MOVIES_TABLE_NAME);
     }
 
     //    static Map<String, AttributeValue> itemKey(String title, String year) {
@@ -32,7 +38,7 @@ public class DynamoDbUtils {
 //
 //    private static GetItemResponse getItem(String title, String year) {
 //        GetItemRequest getRequest = GetItemRequest.builder()
-//                .tableName(MOVIES_TABLE)
+//                .tableName(MOVIES_TABLE_NAME)
 //                .key(itemKey(title, year))
 //                .build();
 //
@@ -42,12 +48,10 @@ public class DynamoDbUtils {
     static void displayItem(String title, int year) {
         System.out.format("\nDisplaying item \"%s (%s)\"\n", title, year);
 
-        Table table = ddb.getTable(MOVIES_TABLE);
-
         GetItemSpec spec = new GetItemSpec().withPrimaryKey(YEAR, year, TITLE, title);
 
         try {
-            Item outcome = table.getItem(spec);
+            Item outcome = MOVIES_TABLE.getItem(spec);
             System.out.println("GetItem succeeded: " + outcome);
         } catch (Exception e) {
             System.out.format("No item found\n");
@@ -56,13 +60,25 @@ public class DynamoDbUtils {
     }
 
     static void insertItem(String title, int year, String info) {
-        Table table = ddb.getTable(MOVIES_TABLE);
         try {
-            table.putItem(new Item()
+            MOVIES_TABLE.putItem(new Item()
                     .withPrimaryKey(YEAR, year, TITLE, title)
                     .withJSON(INFO, info)
             );
             System.out.format("Added movie: %s (%s)\n", title, year);
+        } catch (Exception e) {
+            System.err.format("Unable to add movie: %s (%s)\n", title, year);
+            System.err.println(e.getMessage());
+        }
+    }
+
+    static void insertItem(String title, int year, Map<String, Object> info) {
+        try {
+            PutItemOutcome outcome = MOVIES_TABLE.putItem(new Item()
+                    .withPrimaryKey(YEAR, year, TITLE, title)
+                    .withMap(INFO, info)
+            );
+            System.out.format("Added movie: %s (%s), %s\n", title, year, outcome.getPutItemResult());
         } catch (Exception e) {
             System.err.format("Unable to add movie: %s (%s)\n", title, year);
             System.err.println(e.getMessage());

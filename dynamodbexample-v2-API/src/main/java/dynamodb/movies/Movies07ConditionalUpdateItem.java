@@ -40,7 +40,7 @@ public class Movies07ConditionalUpdateItem {
         attributeNames.put("#yr", "year");
 
         return UpdateItemRequest.builder()
-                .tableName(MOVIES_TABLE)
+                .tableName(MOVIES_TABLE_NAME)
                 .key(itemKey(title, year))
                 .updateExpression("ADD releasedAfter :latestYear")
                 .conditionExpression("#yr > :latestYear")

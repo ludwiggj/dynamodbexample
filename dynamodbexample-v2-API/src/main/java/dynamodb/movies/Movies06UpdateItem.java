@@ -47,7 +47,7 @@ public class Movies06UpdateItem {
         );
 
         return UpdateItemRequest.builder()
-                .tableName(MOVIES_TABLE)
+                .tableName(MOVIES_TABLE_NAME)
                 .key(itemKey(title, year))
                 .attributeUpdates(updated_values)
                 .build();

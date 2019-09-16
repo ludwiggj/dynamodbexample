@@ -9,6 +9,7 @@ import common.Utils;
 import java.util.Iterator;
 
 import static common.Utils.*;
+import static dynamodb.movies.DynamoDbUtils.insertItem;
 
 public class Movies02LoadData {
 
@@ -25,7 +26,7 @@ public class Movies02LoadData {
             String title = currentNode.path(TITLE).asText();
             int year = currentNode.path(YEAR).asInt();
             String info = currentNode.path(INFO).toString();
-            DynamoDbUtils.insertItem(title, year, info);
+            insertItem(title, year, info);
         }
         parser.close();
     }

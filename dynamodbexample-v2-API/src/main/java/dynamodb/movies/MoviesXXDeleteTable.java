@@ -17,14 +17,14 @@ package dynamodb.movies;
 import software.amazon.awssdk.services.dynamodb.model.DeleteTableRequest;
 import software.amazon.awssdk.services.dynamodb.model.DeleteTableResponse;
 
-import static common.Utils.MOVIES_TABLE;
+import static common.Utils.MOVIES_TABLE_NAME;
 import static dynamodb.movies.DynamoDbUtils.ddb;
 
 
 public class MoviesXXDeleteTable {
 
     public static void main(String[] args) {
-        DeleteTableRequest request = DeleteTableRequest.builder().tableName(MOVIES_TABLE).build();
+        DeleteTableRequest request = DeleteTableRequest.builder().tableName(MOVIES_TABLE_NAME).build();
         DeleteTableResponse response = ddb.deleteTable(request);
         System.out.format("Table %s deleted!", response.tableDescription().tableName());
     }

@@ -5,7 +5,7 @@ import com.amazonaws.services.dynamodbv2.model.*;
 
 import java.util.Arrays;
 
-import static common.Utils.MOVIES_TABLE;
+import static common.Utils.MOVIES_TABLE_NAME;
 import static dynamodb.movies.DynamoDbUtils.ddb;
 
 public class Movies01CreateTable {
@@ -13,7 +13,7 @@ public class Movies01CreateTable {
     public static void main(String[] args) {
         try {
             System.out.println("Attempting to create table; please wait...");
-            Table table = ddb.createTable(MOVIES_TABLE,
+            Table table = ddb.createTable(MOVIES_TABLE_NAME,
                     Arrays.asList(
                             new KeySchemaElement("year", KeyType.HASH),  // Partition key
                             new KeySchemaElement("title", KeyType.RANGE) // Sort key

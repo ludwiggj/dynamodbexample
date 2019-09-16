@@ -12,10 +12,10 @@ public class Movies08DeleteItem {
         System.out.println("Before:");
         displayItem(title, year);
 
-        System.out.format("Deleting item \"%s (%s)\" from %s\n", title, year, MOVIES_TABLE);
+        System.out.format("Deleting item \"%s (%s)\" from %s\n", title, year, MOVIES_TABLE_NAME);
 
         DeleteItemRequest deleteReq = DeleteItemRequest.builder()
-                .tableName(MOVIES_TABLE)
+                .tableName(MOVIES_TABLE_NAME)
                 .key(itemKey(title, year))
                 .build();
 

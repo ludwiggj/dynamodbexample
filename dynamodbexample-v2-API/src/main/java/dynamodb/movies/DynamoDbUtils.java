@@ -34,7 +34,7 @@ public class DynamoDbUtils {
 
     private static GetItemResponse getItem(String title, int year) {
         GetItemRequest getRequest = GetItemRequest.builder()
-                .tableName(MOVIES_TABLE)
+                .tableName(MOVIES_TABLE_NAME)
                 .key(itemKey(title, year))
                 .build();
 
@@ -74,7 +74,7 @@ public class DynamoDbUtils {
         item_values.put(INFO, AttributeValue.builder().s(info).build());
 
         return PutItemRequest.builder()
-                .tableName(MOVIES_TABLE)
+                .tableName(MOVIES_TABLE_NAME)
                 .item(item_values);
     }
 }
