@@ -30,6 +30,9 @@ public class Movies02LoadData {
             currentNode = (ObjectNode) iterator.next();
 
             String title = currentNode.path(TITLE).toString();
+
+            // TODO - Finish example of using v2 low-level API to load JSON into dynamo
+            //        All the other examples should then work as originally intended
             if (title.equals("\"Prisoners\"")) {
                 int rating = currentNode.path("info").path("rating").asInt();
                 String plot = currentNode.path("info").path("plot").toString();

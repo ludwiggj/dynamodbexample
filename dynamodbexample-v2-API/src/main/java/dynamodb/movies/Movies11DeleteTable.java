@@ -21,7 +21,7 @@ import static common.Utils.MOVIES_TABLE_NAME;
 import static dynamodb.movies.DynamoDbUtils.ddb;
 
 
-public class MoviesXXDeleteTable {
+public class Movies11DeleteTable {
 
     public static void main(String[] args) {
         DeleteTableRequest request = DeleteTableRequest.builder().tableName(MOVIES_TABLE_NAME).build();
