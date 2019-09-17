@@ -5,7 +5,6 @@ import com.amazonaws.services.dynamodbv2.AmazonDynamoDB;
 import com.amazonaws.services.dynamodbv2.AmazonDynamoDBClientBuilder;
 import com.amazonaws.services.dynamodbv2.document.DynamoDB;
 import com.amazonaws.services.dynamodbv2.document.Item;
-import com.amazonaws.services.dynamodbv2.document.PutItemOutcome;
 import com.amazonaws.services.dynamodbv2.document.Table;
 import com.amazonaws.services.dynamodbv2.document.spec.GetItemSpec;
 
@@ -74,11 +73,11 @@ public class DynamoDbUtils {
 
     static void insertItem(String title, int year, Map<String, Object> info) {
         try {
-            PutItemOutcome outcome = MOVIES_TABLE.putItem(new Item()
+            MOVIES_TABLE.putItem(new Item()
                     .withPrimaryKey(YEAR, year, TITLE, title)
                     .withMap(INFO, info)
             );
-            System.out.format("Added movie: %s (%s), %s\n", title, year, outcome.getPutItemResult());
+            System.out.format("Added movie: %s (%s)\n", title, year);
         } catch (Exception e) {
             System.err.format("Unable to add movie: %s (%s)\n", title, year);
             System.err.println(e.getMessage());
